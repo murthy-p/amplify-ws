@@ -1,4 +1,3 @@
-/* pages/index.js */
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
@@ -7,7 +6,7 @@ export default function Home({ breeds = [] }) {
   const [breedList, setBreedList] = useState([]);
 
   useEffect(() => {
-    setBreedList(Object.keys(breeds));
+    setBreedList(breeds);
   }, []);
 
   return (
@@ -32,7 +31,7 @@ export default function Home({ breeds = [] }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const url = "https://dog.ceo/api/breeds/list/all";
   const res = await fetch(url);
   const data = await res.json();
